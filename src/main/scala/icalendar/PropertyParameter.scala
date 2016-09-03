@@ -1,5 +1,7 @@
 package icalendar
 
+import scala.language.implicitConversions
+
 abstract class PropertyParameter[T] {
   lazy val name = nameFromClassName(this)
   val value: T
@@ -12,33 +14,40 @@ trait Parameterized { self: Product =>
   }.toList
 }
 
+trait XnameValue {
+  val xname: ValueTypes.Xname
+  val asString = ???
+}
+case class IanaToken(token: String)
+trait IanaTokenValue {
+  val token: IanaToken
+  val asString = ???
+}
+
+abstract class PropertyParameterValueType {
+  val asString: String
+}
+trait Constant {
+  val asString = nameFromClassName(this).toUpperCase
+}
+
 object PropertyParameters {
   import ValueTypes._
-
-  type IanaToken = String
-
-  sealed trait ConstantOrExtension
-  case class Constant(value: Any) extends ConstantOrExtension
-  case class Experimental(name: Xname) extends ConstantOrExtension
-  case class Iana(token: IanaToken) extends ConstantOrExtension
 
   case class Altrep(value: Uri) extends PropertyParameter[Uri]
   case class Cn(value: String) extends PropertyParameter[String]
 
-  // Meh... I guess we want a CutypeValue type or something after all... 
-  sealed abstract class Cutype extends PropertyParameter[ConstantOrExtension] {
-    override lazy val name = "CUTYPE"
-    override val value: ConstantOrExtension = Constant(this)
+  case class Cutype(value: CutypeValue) extends PropertyParameter[CutypeValue]
+  object Cutype {
+    implicit def fromValue(value: CutypeValue): Cutype = Cutype(value)
+    implicit def optionFromValue(value: CutypeValue): Option[Cutype] = Some(Cutype(value))
   }
-  case object Individual extends Cutype
-  case object Group extends Cutype
-  case object Resource extends Cutype
-  case object Room extends Cutype
-  case object Unknown extends Cutype
-  case class ExperimentalCuType(xname: Xname) extends Cutype {
-    override val value = Experimental(xname)
-  }
-  case class IanaCuType(token: IanaToken) extends Cutype {
-    override val value = Iana(token)
-  }
+  sealed trait CutypeValue extends PropertyParameterValueType
+  case object Individual extends CutypeValue with Constant
+  case object Group extends CutypeValue with Constant
+  case object Resource extends CutypeValue with Constant
+  case object Room extends CutypeValue with Constant
+  case object Unknown extends CutypeValue with Constant
+  case class ExperimentalCuType(xname: Xname) extends CutypeValue with XnameValue
+  case class IanaCuType(token: IanaToken) extends CutypeValue with IanaTokenValue
 }

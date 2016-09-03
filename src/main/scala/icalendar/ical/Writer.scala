@@ -33,12 +33,11 @@ object Writer {
     case string: String =>
       if (string.contains(':') || string.contains(';') || string.contains(',')) DQUOTE + string + DQUOTE
       else string
-    case Constant(obj) => nameFromClassName(obj).toUpperCase
+    case c: Constant => c.asString
     case e: Either[_, _] => e match {
       case Left(v) => parameterValueAsIcal(v)
       case Right(v) => parameterValueAsIcal(v)
     }
-    case Experimental(Xname(name, vendorid)) => "X-" + vendorid.map(_ + "-").getOrElse("") + name
   }
   def asIcal(parameters: List[PropertyParameter[_]]) =
     parameters.map((parameter: PropertyParameter[_]) => ";" + parameter.name.toUpperCase + "=" + parameterValueAsIcal(parameter.value)).mkString("")
