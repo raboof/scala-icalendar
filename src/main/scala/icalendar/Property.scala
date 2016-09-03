@@ -21,7 +21,7 @@ object Properties {
   }
 
   case class Uid(value: Text) extends Property[Text]
-  case class Description(value: Text, altrep: Option[Altrep]) extends Property[Text]
+  case class Description(value: Text, altrep: Option[Altrep] = None) extends Property[Text]
   case class Organizer(value: CalAddress) extends Property[CalAddress]
   case class Attendee(value: CalAddress) extends Property[CalAddress]
 }

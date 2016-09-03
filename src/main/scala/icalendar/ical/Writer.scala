@@ -7,7 +7,7 @@ package ical
 object Writer {
   import ValueTypes._
   import PropertyParameters._
-  
+
   val DQUOTE = "\""
   val CRLF = "\r\n"
 
@@ -33,7 +33,7 @@ object Writer {
     case string: String =>
       if (string.contains(':') || string.contains(';') || string.contains(',')) DQUOTE + string + DQUOTE
       else string
-    case Constant(obj) => nameFromClassName(obj)
+    case Constant(obj) => nameFromClassName(obj).toUpperCase
     case e: Either[_, _] => e match {
       case Left(v) => parameterValueAsIcal(v)
       case Right(v) => parameterValueAsIcal(v)
