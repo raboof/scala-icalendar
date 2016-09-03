@@ -7,7 +7,7 @@ case class Event(
     uid: Uid
   ) {
     def properties() = List(
-     dtstamp.getOrElse(now()),
+     dtstamp.getOrElse(Dtstamp.now()),
      uid)
 
     // TODO support for alarms
