@@ -40,11 +40,17 @@ object Writer {
         case Left(v) => parameterValueAsIcal(v)
         case Right(v) => parameterValueAsIcal(v)
       }
+    case l: List[ValueType] => l.map(e => DQUOTE + valueAsIcal(e) + DQUOTE).mkString(",")
   }
+  def parameterName(name: String): String =
+    (name.head + "[A-Z\\d]".r.replaceAllIn(name.tail, { m =>
+      "-" + m.group(0)
+    })).toUpperCase
+
   def asIcal(parameters: List[PropertyParameter[_]]) =
     parameters
       .map((parameter: PropertyParameter[_]) =>
-        ";" + parameter.name.toUpperCase + "=" + parameterValueAsIcal(parameter.value))
+        ";" + parameterName(parameter.name) + "=" + parameterValueAsIcal(parameter.value))
       .mkString("")
 
   def fold(contentline: String): String =

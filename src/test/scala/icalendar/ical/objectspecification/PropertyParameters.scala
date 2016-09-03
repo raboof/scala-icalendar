@@ -33,5 +33,14 @@ class PropertyParameters extends WordSpec with Matchers {
         "ATTENDEE;CUTYPE=GROUP:mailto:ietf-calsch@example.org"
       )
     }
+
+    "3.2.4 Delegators" in {
+      asIcal(
+        Attendee(
+          CalAddress("mailto:jdoe@example.com",
+                     delegatedFrom = DelegatedFrom(List(CalAddress("mailto:jsmith@example.com")))))) should haveLines(
+        """ATTENDEE;DELEGATED-FROM="mailto:jsmith@example.com":mailto:jdoe@example.com"""
+      )
+    }
   }
 }

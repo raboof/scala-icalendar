@@ -52,4 +52,6 @@ object PropertyParameters {
   case object Unknown extends CutypeValue with Constant
   case class ExperimentalCuType(xname: Xname) extends CutypeValue with XnameValue
   case class IanaCuType(token: IanaToken) extends CutypeValue with IanaTokenValue
+
+  case class DelegatedFrom(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
 }

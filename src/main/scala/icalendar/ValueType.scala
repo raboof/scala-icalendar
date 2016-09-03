@@ -29,7 +29,10 @@ object ValueTypes {
     implicit def fromUri(uri: URI): Uri = Uri(uri)
   }
 
-  case class CalAddress(value: Uri, cn: Option[Cn] = None, cutype: Option[Cutype] = None)
+  case class CalAddress(value: Uri,
+                        cn: Option[Cn] = None,
+                        cutype: Option[Cutype] = None,
+                        delegatedFrom: Option[DelegatedFrom] = None)
       extends ValueType
       with Parameterized
 
