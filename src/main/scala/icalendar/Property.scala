@@ -1,14 +1,14 @@
 package icalendar
 
 abstract class Property[T <: ValueType] { self: Product =>
-    lazy val name = nameFromClassName(this)
+  lazy val name = nameFromClassName(this)
 
-    val parameters = self.productIterator.collect {
-      case Some(p: PropertyParameter[_]) => p
-      case p: PropertyParameter[_] => p
-    }.toList
-    val value: T
-  }
+  val parameters = self.productIterator.collect {
+    case Some(p: PropertyParameter[_]) => p
+    case p: PropertyParameter[_] => p
+  }.toList
+  val value: T
+}
 
 object Properties {
   import ValueTypes._

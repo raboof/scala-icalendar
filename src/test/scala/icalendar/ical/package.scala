@@ -1,6 +1,6 @@
 /**
- * The scala-icalendar unit tests follow the structure of RFC5545
- */
+  * The scala-icalendar unit tests follow the structure of RFC5545
+  */
 package icalendar
 
 import scala.language.implicitConversions

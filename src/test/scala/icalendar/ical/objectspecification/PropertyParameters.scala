@@ -13,12 +13,13 @@ import Writer._
 class PropertyParameters extends WordSpec with Matchers {
   "3.2 Property Parameters" should {
     "3.2.1 Alternate Text Representation" in {
-      asIcal(Description("Project XYZ Review Meeting will include the following agenda items: (a) Market Overview, (b) Finances, (c) Project Management",
-                    Altrep("CID:part3.msg.970415T083000@example.com"))) should
-        haveLines(
-          """DESCRIPTION;ALTREP="CID:part3.msg.970415T083000@example.com":Project XYZ Re""",
-          """ view Meeting will include the following agenda items: (a) Market Overview\,""",
-          """  (b) Finances\, (c) Project Management""")
+      asIcal(
+        Description(
+          "Project XYZ Review Meeting will include the following agenda items: (a) Market Overview, (b) Finances, (c) Project Management",
+          Altrep("CID:part3.msg.970415T083000@example.com"))) should
+        haveLines("""DESCRIPTION;ALTREP="CID:part3.msg.970415T083000@example.com":Project XYZ Re""",
+                  """ view Meeting will include the following agenda items: (a) Market Overview\,""",
+                  """  (b) Finances\, (c) Project Management""")
     }
 
     "3.2.2 Common Name" in {

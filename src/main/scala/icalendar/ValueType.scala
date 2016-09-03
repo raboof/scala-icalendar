@@ -32,6 +32,7 @@ object ValueTypes {
   case class Xname(value: String, vendorId: Option[String] = None)
 
   case class CalAddress(value: Uri, cn: Option[Cn] = None, cutype: Option[Cutype] = None)
-    extends ValueType with Parameterized
+      extends ValueType
+      with Parameterized
 
 }

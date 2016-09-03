@@ -8,10 +8,11 @@ abstract class PropertyParameter[T] {
 }
 
 trait Parameterized { self: Product =>
-  def parameters = self.productIterator.collect {
-    case Some(p: PropertyParameter[_]) => p
-    case p: PropertyParameter[_] => p
-  }.toList
+  def parameters =
+    self.productIterator.collect {
+      case Some(p: PropertyParameter[_]) => p
+      case p: PropertyParameter[_] => p
+    }.toList
 }
 
 trait XnameValue {
