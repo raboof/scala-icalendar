@@ -47,15 +47,28 @@ class PropertyParameters extends WordSpec with Matchers {
       asIcal(
         Attendee(
           CalAddress("mailto:jsmith@example.com",
-            delegatedTo = DelegatedTo(List(
-              CalAddress("mailto:jdoe@example.com"),
-              CalAddress("mailto:jqpublic@example.com")
-            )))
+                     delegatedTo = DelegatedTo(
+                       List(
+                         CalAddress("mailto:jdoe@example.com"),
+                         CalAddress("mailto:jqpublic@example.com")
+                       )))
         )
       ) should haveLines(
         """ATTENDEE;DELEGATED-TO="mailto:jdoe@example.com","mailto:jqpublic@example.co""",
         """ m":mailto:jsmith@example.com"""
       )
+    }
+
+    "3.2.6 Directory Entry Reference" in {
+      asIcal(
+        Organizer(
+          CalAddress(
+            "mailto:jimdo@example.com",
+            dir = Dir("ldap://example.com:6666/o=ABC%20Industries,c=US???(cn=Jim%20Dolittle)")))) should haveLines(
+        """ORGANIZER;DIR="ldap://example.com:6666/o=ABC%20Industries,c=US???(cn=Jim%20""",
+        """ Dolittle)":mailto:jimdo@example.com"""
+      )
+
     }
   }
 }

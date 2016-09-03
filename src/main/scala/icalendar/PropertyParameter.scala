@@ -55,4 +55,5 @@ object PropertyParameters {
 
   case class DelegatedFrom(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
   case class DelegatedTo(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
+  case class Dir(value: Uri) extends PropertyParameter[Uri]
 }
