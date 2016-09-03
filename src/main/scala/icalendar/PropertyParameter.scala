@@ -15,8 +15,9 @@ trait Parameterized { self: Product =>
     }.toList
 }
 
+case class Xname(value: String, vendorId: Option[String] = None)
 trait XnameValue {
-  val xname: ValueTypes.Xname
+  val xname: Xname
   val asString = ???
 }
 case class IanaToken(token: String)
