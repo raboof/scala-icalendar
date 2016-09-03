@@ -1,6 +1,6 @@
 package icalendar
 
-abstract class Property[T <: ValueType] { self: Product =>
+sealed abstract class Property[T <: ValueType] { self: Product =>
   lazy val name = nameFromClassName(this)
 
   val parameters = self.productIterator.collect {
