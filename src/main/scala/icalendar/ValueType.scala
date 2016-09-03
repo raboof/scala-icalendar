@@ -32,7 +32,8 @@ object ValueTypes {
   case class CalAddress(value: Uri,
                         cn: Option[Cn] = None,
                         cutype: Option[Cutype] = None,
-                        delegatedFrom: Option[DelegatedFrom] = None)
+                        delegatedFrom: Option[DelegatedFrom] = None,
+                        delegatedTo: Option[DelegatedTo] = None)
       extends ValueType
       with Parameterized
 

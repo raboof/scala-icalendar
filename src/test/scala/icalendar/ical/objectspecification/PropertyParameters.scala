@@ -42,5 +42,20 @@ class PropertyParameters extends WordSpec with Matchers {
         """ATTENDEE;DELEGATED-FROM="mailto:jsmith@example.com":mailto:jdoe@example.com"""
       )
     }
+
+    "3.2.4 Delegatees" in {
+      asIcal(
+        Attendee(
+          CalAddress("mailto:jsmith@example.com",
+            delegatedTo = DelegatedTo(List(
+              CalAddress("mailto:jdoe@example.com"),
+              CalAddress("mailto:jqpublic@example.com")
+            )))
+        )
+      ) should haveLines(
+        """ATTENDEE;DELEGATED-TO="mailto:jdoe@example.com","mailto:jqpublic@example.co""",
+        """ m":mailto:jsmith@example.com"""
+      )
+    }
   }
 }

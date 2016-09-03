@@ -54,4 +54,5 @@ object PropertyParameters {
   case class IanaCuType(token: IanaToken) extends CutypeValue with IanaTokenValue
 
   case class DelegatedFrom(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
+  case class DelegatedTo(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
 }
