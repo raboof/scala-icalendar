@@ -38,7 +38,7 @@ object Writer {
     case string: String =>
       if (string.contains(':') || string.contains(';') || string.contains(',')) DQUOTE + string + DQUOTE
       else string
-    case c: Constant => c.asString
+    case c: PropertyParameterValueType => c.asString
     case e: Either[_, _] =>
       e match {
         case Left(v) => parameterValueAsIcal(v)

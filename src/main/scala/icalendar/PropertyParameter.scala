@@ -69,4 +69,12 @@ object PropertyParameters {
   case class ExperimentalFbtype(xname: Xname) extends FbtypeValue with XnameValue
   case class IanaFbtype(token: IanaToken) extends FbtypeValue with IanaTokenValue
 
+  case class Language(value: LanguageTag) extends PropertyParameter[LanguageTag]
+  object Language {
+    def apply(tag1: String, tag2: String): Language = Language(LanguageTag(List(tag1, tag2)))
+  }
+  // RFC5646
+  case class LanguageTag(subtags: List[String]) extends PropertyParameterValueType {
+    lazy val asString = subtags.mkString("-")
+  }
 }

@@ -84,5 +84,13 @@ class PropertyParameters extends WordSpec with Matchers {
         "FREEBUSY;FBTYPE=BUSY:19980415T133000Z/19980415T170000Z"
       )
     }
+
+    "3.2.10 Language" in {
+      asIcal(
+        Summary("Company Holiday Party", language = Language("en", "US"))
+      ) should haveLines(
+        "SUMMARY;LANGUAGE=en-US:Company Holiday Party"
+      )
+    }
   }
 }
