@@ -1,6 +1,7 @@
 package icalendar
 
 import java.net.URI
+import java.time.LocalDateTime
 import scala.language.implicitConversions
 
 sealed trait ValueType
@@ -10,15 +11,17 @@ object ValueTypes {
 
   // TODO add 'parameterized' to add the parameter when not using 'Left'
   case class EitherType[T <: ValueType, U <: ValueType](value: Either[T, U]) extends ValueType
+  case class ListType[T <: ValueType](values: T*) extends ValueType
 
   case class Text(text: String) extends ValueType
   object Text {
     implicit def fromString(string: String): Text = Text(string)
   }
 
-  case class DateTime(dt: Long) extends ValueType
+  case class DateTime(dt: LocalDateTime) extends ValueType
   object DateTime {
-    implicit def fromLong(dt: Long): DateTime = DateTime(dt)
+    implicit def fromLocalDateTime(dt: LocalDateTime): DateTime = DateTime(dt)
+    // def apply(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int): DateTime =
   }
 
   case class Binary(bytes: Array[Byte]) extends ValueType
@@ -38,4 +41,5 @@ object ValueTypes {
       extends ValueType
       with Parameterized
 
+  case class Period(from: DateTime, to: DateTime) extends ValueType
 }

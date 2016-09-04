@@ -2,6 +2,8 @@ package icalendar
 package ical
 package objectspecification
 
+import java.time.{ LocalDateTime, Month }
+
 import org.scalatest._
 import matchers._
 
@@ -68,7 +70,19 @@ class PropertyParameters extends WordSpec with Matchers {
         """ORGANIZER;DIR="ldap://example.com:6666/o=ABC%20Industries,c=US???(cn=Jim%20""",
         """ Dolittle)":mailto:jimdo@example.com"""
       )
+    }
 
+    "3.2.9 Free/Busy Time Type" in {
+      asIcal(
+        FreeBusy(
+          ListType(Period(
+            LocalDateTime.of(1998, Month.APRIL, 15, 13, 30, 0),
+            LocalDateTime.of(1998, Month.APRIL, 15, 17, 0, 0))),
+          fbtype = Busy
+        )
+      ) should haveLines(
+        "FREEBUSY;FBTYPE=BUSY:19980415T133000Z/19980415T170000Z"
+      )
     }
   }
 }

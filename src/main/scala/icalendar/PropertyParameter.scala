@@ -56,4 +56,17 @@ object PropertyParameters {
   case class DelegatedFrom(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
   case class DelegatedTo(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
   case class Dir(value: Uri) extends PropertyParameter[Uri]
+  case class Fbtype(value: FbtypeValue) extends PropertyParameter[FbtypeValue]
+  object Fbtype {
+    implicit def fromValue(value: FbtypeValue): Fbtype = Fbtype(value)
+    implicit def optionFromValue(value: FbtypeValue): Option[Fbtype] = Some(Fbtype(value))
+  }
+  sealed trait FbtypeValue extends PropertyParameterValueType
+  case object Free extends FbtypeValue with Constant
+  case object Busy extends FbtypeValue with Constant
+  case object BusyUnavailable extends FbtypeValue with Constant
+  case object BusyTentative extends FbtypeValue with Constant
+  case class ExperimentalFbtype(xname: Xname) extends FbtypeValue with XnameValue
+  case class IanaFbtype(token: IanaToken) extends FbtypeValue with IanaTokenValue
+
 }

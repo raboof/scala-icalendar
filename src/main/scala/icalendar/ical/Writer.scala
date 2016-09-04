@@ -1,6 +1,8 @@
 package icalendar
 package ical
 
+import java.time.format.DateTimeFormatter
+
 /**
   * Writing icalendar objects to the line-based RFC5545 ICalendar format
   */
@@ -20,12 +22,14 @@ object Writer {
         case '\n' => "\\n"
         case other => other.toString
       }
-    case date: DateTime => date.toString
+    case date: DateTime => date.dt.format(DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"))
     case value: CalAddress => valueAsIcal(value.value)
     case Uri(uri) => uri.toString
     case EitherType(Left(payload)) => valueAsIcal(payload)
     case EitherType(Right(payload)) => valueAsIcal(payload)
     case Binary(bytes) => ??? // TODO base64-encoded
+    case list: ListType[_] => list.values.toList.map(valueAsIcal).mkString(",")
+    case Period(from, to) => valueAsIcal(from) + "/" + valueAsIcal(to)
   }
 
   def parameterValueAsIcal(value: Any): String = value match {
