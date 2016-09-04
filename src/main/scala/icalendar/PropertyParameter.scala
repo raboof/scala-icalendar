@@ -71,6 +71,7 @@ object PropertyParameters {
 
   case class Language(value: LanguageTag) extends PropertyParameter[LanguageTag]
   object Language {
+    def apply(tag: String): Language = Language(LanguageTag(List(tag)))
     def apply(tag1: String, tag2: String): Language = Language(LanguageTag(List(tag1, tag2)))
   }
   // RFC5646

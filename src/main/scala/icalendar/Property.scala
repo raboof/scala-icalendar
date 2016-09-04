@@ -28,4 +28,5 @@ object Properties {
   case class Attendee(value: CalAddress) extends Property[CalAddress]
   case class FreeBusy(value: ListType[Period], fbtype: Option[Fbtype] = None) extends Property[ListType[Period]]
   case class Summary(value: Text, language: Option[Language]) extends Property[Text]
+  case class Location(value: Text, language: Option[Language]) extends Property[Text]
 }

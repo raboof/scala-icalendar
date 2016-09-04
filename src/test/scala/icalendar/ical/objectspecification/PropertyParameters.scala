@@ -91,6 +91,12 @@ class PropertyParameters extends WordSpec with Matchers {
       ) should haveLines(
         "SUMMARY;LANGUAGE=en-US:Company Holiday Party"
       )
+
+      asIcal(
+        Location("Tyskland", language = Language("no"))
+      ) should haveLines(
+        "LOCATION;LANGUAGE=no:Tyskland"
+      )
     }
   }
 }
