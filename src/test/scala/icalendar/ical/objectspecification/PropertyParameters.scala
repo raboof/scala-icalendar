@@ -2,7 +2,7 @@ package icalendar
 package ical
 package objectspecification
 
-import java.time.{ ZonedDateTime, ZoneOffset, Month }
+import java.time.{ ZonedDateTime, ZoneOffset }
 
 import org.scalatest._
 import matchers._

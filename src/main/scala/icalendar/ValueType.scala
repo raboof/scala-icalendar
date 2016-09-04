@@ -13,9 +13,16 @@ object ValueTypes {
   case class EitherType[T <: ValueType, U <: ValueType](value: Either[T, U]) extends ValueType
   case class ListType[T <: ValueType](values: T*) extends ValueType
 
-  case class Text(text: String) extends ValueType
+  trait ConstantText {
+    val text = nameFromClassName(this).toUpperCase
+  }
+  sealed abstract class Text extends ValueType {
+    val text: String
+  }
   object Text {
-    implicit def fromString(string: String): Text = Text(string)
+    implicit def fromString(string: String): Text = new Text with Constant {
+      override val text = string
+    }
   }
 
   case class DateTime(dt: ZonedDateTime) extends ValueType
@@ -43,4 +50,6 @@ object ValueTypes {
       with Parameterized
 
   case class Period(from: DateTime, to: DateTime) extends ValueType
+  sealed trait ClassificationValue extends Text
+  case object Private extends ClassificationValue with ConstantText
 }

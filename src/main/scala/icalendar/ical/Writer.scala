@@ -14,8 +14,8 @@ object Writer {
   val CRLF = "\r\n"
 
   def valueAsIcal(value: ValueType): String = value match {
-    case Text(string) =>
-      string.flatMap {
+    case t: Text =>
+      t.text.flatMap {
         case '\\' => "\\\\"
         case ';' => "\\;"
         case ',' => "\\,"
@@ -72,9 +72,9 @@ object Writer {
         ":" + valueAsIcal(property.value)) + CRLF
 
   def asIcal(event: Event): String = {
-    "VEVENT:BEGIN" + CRLF +
+    "BEGIN:VEVENT" + CRLF +
       event.properties.map(asIcal).mkString("") +
       event.alarms.map(_ => ???).mkString("") +
-      "VEVENT:END" + CRLF
+      "END:VEVENT" + CRLF
   }
 }

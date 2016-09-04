@@ -3,10 +3,19 @@ package icalendar
 import Properties._
 
 case class Event(
-    dtstamp: Option[Dtstamp],
-    uid: Uid
+    dtstamp: Option[Dtstamp] = None,
+    uid: Uid,
+    dtstart: Option[Dtstart] = None,
+    classification: Option[Classification] = None,
+    summary: Option[Summary] = None,
+    categories: List[Categories] = Nil
 ) {
-  def properties() = List(dtstamp.getOrElse(Dtstamp.now()), uid)
+  def properties() = List(
+    Some(dtstamp.getOrElse(Dtstamp.now())),
+    Some(uid),
+    dtstart,
+    classification,
+    summary).flatten ++ categories
 
   // TODO support for alarms
   def alarms = List()
