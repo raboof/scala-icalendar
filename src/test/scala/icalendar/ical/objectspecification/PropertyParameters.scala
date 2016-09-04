@@ -108,6 +108,17 @@ class PropertyParameters extends WordSpec with Matchers {
       ) should haveLines(
         """ATTENDEE;MEMBER="mailto:ietf-calsch@example.org":mailto:jsmith@example.com"""
       )
+
+      asIcal(
+        Attendee(
+          CalAddress("mailto:janedoe@example.com", member = Member(List(
+            CalAddress("mailto:projectA@example.com"),
+            CalAddress("mailto:projectB@example.com")
+          ))))
+      ) should haveLines(
+        """ATTENDEE;MEMBER="mailto:projectA@example.com","mailto:projectB@example.com"""",
+        """ :mailto:janedoe@example.com"""
+      )
     }
   }
 }
