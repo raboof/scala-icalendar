@@ -44,7 +44,10 @@ object Writer {
         case Left(v) => parameterValueAsIcal(v)
         case Right(v) => parameterValueAsIcal(v)
       }
-    case l: List[ValueType] => l.map(e => DQUOTE + valueAsIcal(e) + DQUOTE).mkString(",")
+    case l: List[_] => l.map {
+      case value: ValueType => DQUOTE + valueAsIcal(value) + DQUOTE
+      case other => DQUOTE + other.toString + DQUOTE
+    }.mkString(",")
   }
   def parameterName(name: String): String =
     (name.head + "[A-Z\\d]".r.replaceAllIn(name.tail, { m =>

@@ -2,6 +2,8 @@ package icalendar
 
 import java.time.{ ZonedDateTime, ZoneOffset }
 
+import scala.language.implicitConversions
+
 sealed abstract class Property[T <: ValueType] { self: Product =>
   lazy val name = nameFromClassName(this)
 
