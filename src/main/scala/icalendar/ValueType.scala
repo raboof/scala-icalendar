@@ -1,7 +1,7 @@
 package icalendar
 
 import java.net.URI
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import scala.language.implicitConversions
 
 sealed trait ValueType
@@ -18,10 +18,10 @@ object ValueTypes {
     implicit def fromString(string: String): Text = Text(string)
   }
 
-  case class DateTime(dt: LocalDateTime) extends ValueType
+  case class DateTime(dt: ZonedDateTime) extends ValueType
   object DateTime {
-    implicit def fromLocalDateTime(dt: LocalDateTime): DateTime = DateTime(dt)
-    // def apply(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int): DateTime =
+    // TODO require or convert to UTC here?
+    implicit def fromZonedDateTime(dt: ZonedDateTime): DateTime = DateTime(dt)
   }
 
   case class Binary(bytes: Array[Byte]) extends ValueType

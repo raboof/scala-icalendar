@@ -2,7 +2,7 @@ package icalendar
 package ical
 package objectspecification
 
-import java.time.{ LocalDateTime, Month }
+import java.time.{ ZonedDateTime, ZoneOffset, Month }
 
 import org.scalatest._
 import matchers._
@@ -76,8 +76,8 @@ class PropertyParameters extends WordSpec with Matchers {
       asIcal(
         FreeBusy(
           ListType(Period(
-            LocalDateTime.of(1998, Month.APRIL, 15, 13, 30, 0),
-            LocalDateTime.of(1998, Month.APRIL, 15, 17, 0, 0))),
+            ZonedDateTime.of(1998, 4, 15, 13, 30, 0, 0, ZoneOffset.UTC),
+            ZonedDateTime.of(1998, 4, 15, 17, 0, 0, 0, ZoneOffset.UTC))),
           fbtype = Busy
         )
       ) should haveLines(

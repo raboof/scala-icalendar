@@ -1,6 +1,6 @@
 package icalendar
 
-import java.time.LocalDateTime
+import java.time.{ ZonedDateTime, ZoneOffset }
 
 sealed abstract class Property[T <: ValueType] { self: Product =>
   lazy val name = nameFromClassName(this)
@@ -19,7 +19,7 @@ object Properties {
   case class Attach(value: EitherType[Uri, Binary]) extends Property[EitherType[Uri, Binary]]
   case class Dtstamp(value: DateTime) extends Property[DateTime]
   object Dtstamp {
-    def now(): Dtstamp = Dtstamp(LocalDateTime.now())
+    def now(): Dtstamp = Dtstamp(ZonedDateTime.now(ZoneOffset.UTC))
   }
 
   case class Uid(value: Text) extends Property[Text]
