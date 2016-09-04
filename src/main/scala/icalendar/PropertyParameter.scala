@@ -78,4 +78,6 @@ object PropertyParameters {
   case class LanguageTag(subtags: List[String]) extends PropertyParameterValueType {
     lazy val asString = subtags.mkString("-")
   }
+
+  case class Member(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
 }

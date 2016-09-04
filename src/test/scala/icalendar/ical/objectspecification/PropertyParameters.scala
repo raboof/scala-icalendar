@@ -98,5 +98,16 @@ class PropertyParameters extends WordSpec with Matchers {
         "LOCATION;LANGUAGE=no:Tyskland"
       )
     }
+
+    "3.2.11 Group or List Membership" in {
+      asIcal(
+        Attendee(
+          CalAddress("mailto:jsmith@example.com", member = Member(List(
+            CalAddress("mailto:ietf-calsch@example.org")
+          ))))
+      ) should haveLines(
+        """ATTENDEE;MEMBER="mailto:ietf-calsch@example.org":mailto:jsmith@example.com"""
+      )
+    }
   }
 }

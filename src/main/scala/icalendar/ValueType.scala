@@ -37,7 +37,8 @@ object ValueTypes {
                         cutype: Option[Cutype] = None,
                         delegatedFrom: Option[DelegatedFrom] = None,
                         delegatedTo: Option[DelegatedTo] = None,
-                        dir: Option[Dir] = None)
+                        dir: Option[Dir] = None,
+                        member: Option[Member] = None)
       extends ValueType
       with Parameterized
 
