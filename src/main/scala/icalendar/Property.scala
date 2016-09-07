@@ -24,7 +24,6 @@ object Properties {
     override lazy val name = "Class"
   }
 
-
   case class Dtstamp(value: DateTime) extends Property[DateTime]
   object Dtstamp {
     def now(): Dtstamp = Dtstamp(ZonedDateTime.now(ZoneOffset.UTC))

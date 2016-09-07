@@ -7,6 +7,7 @@ case class Event(
     uid: Uid,
     dtstart: Option[Dtstart] = None,
     classification: Option[Classification] = None,
+    description: Option[Description] = None,
     summary: Option[Summary] = None,
     categories: List[Categories] = Nil
 ) {
@@ -15,6 +16,7 @@ case class Event(
     Some(uid),
     dtstart,
     classification,
+    description,
     summary).flatten ++ categories
 
   // TODO support for alarms
