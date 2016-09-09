@@ -2,7 +2,7 @@ package icalendar
 package ical
 package objectspecification
 
-import java.time.{ ZonedDateTime, ZoneOffset }
+import java.time.{ZonedDateTime, ZoneOffset}
 
 import org.scalatest._
 import matchers._
@@ -75,9 +75,9 @@ class PropertyParameters extends WordSpec with Matchers {
     "3.2.9 Free/Busy Time Type" in {
       asIcal(
         FreeBusy(
-          ListType(Period(
-            ZonedDateTime.of(1998, 4, 15, 13, 30, 0, 0, ZoneOffset.UTC),
-            ZonedDateTime.of(1998, 4, 15, 17, 0, 0, 0, ZoneOffset.UTC))),
+          ListType(
+            Period(ZonedDateTime.of(1998, 4, 15, 13, 30, 0, 0, ZoneOffset.UTC),
+                   ZonedDateTime.of(1998, 4, 15, 17, 0, 0, 0, ZoneOffset.UTC))),
           fbtype = Busy
         )
       ) should haveLines(
@@ -102,19 +102,23 @@ class PropertyParameters extends WordSpec with Matchers {
     "3.2.11 Group or List Membership" in {
       asIcal(
         Attendee(
-          CalAddress("mailto:jsmith@example.com", member = Member(List(
-            CalAddress("mailto:ietf-calsch@example.org")
-          ))))
+          CalAddress("mailto:jsmith@example.com",
+                     member = Member(
+                       List(
+                         CalAddress("mailto:ietf-calsch@example.org")
+                       ))))
       ) should haveLines(
         """ATTENDEE;MEMBER="mailto:ietf-calsch@example.org":mailto:jsmith@example.com"""
       )
 
       asIcal(
         Attendee(
-          CalAddress("mailto:janedoe@example.com", member = Member(List(
-            CalAddress("mailto:projectA@example.com"),
-            CalAddress("mailto:projectB@example.com")
-          ))))
+          CalAddress("mailto:janedoe@example.com",
+                     member = Member(
+                       List(
+                         CalAddress("mailto:projectA@example.com"),
+                         CalAddress("mailto:projectB@example.com")
+                       ))))
       ) should haveLines(
         """ATTENDEE;MEMBER="mailto:projectA@example.com","mailto:projectB@example.com"""",
         """ :mailto:janedoe@example.com"""

@@ -10,14 +10,9 @@ case class Event(
     description: Option[Description] = None,
     summary: Option[Summary] = None,
     categories: List[Categories] = Nil
-) {
-  def properties() = List(
-    Some(dtstamp.getOrElse(Dtstamp.now())),
-    Some(uid),
-    dtstart,
-    classification,
-    description,
-    summary).flatten ++ categories
+) extends VObject {
+  override def properties() =
+    List(Some(dtstamp.getOrElse(Dtstamp.now())), Some(uid), dtstart, classification, description, summary).flatten ++ categories
 
   // TODO support for alarms
   def alarms = List()

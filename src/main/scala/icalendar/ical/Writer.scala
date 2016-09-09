@@ -44,10 +44,11 @@ object Writer {
         case Left(v) => parameterValueAsIcal(v)
         case Right(v) => parameterValueAsIcal(v)
       }
-    case l: List[_] => l.map {
-      case value: ValueType => DQUOTE + valueAsIcal(value) + DQUOTE
-      case other => DQUOTE + other.toString + DQUOTE
-    }.mkString(",")
+    case l: List[_] =>
+      l.map {
+        case value: ValueType => DQUOTE + valueAsIcal(value) + DQUOTE
+        case other => DQUOTE + other.toString + DQUOTE
+      }.mkString(",")
   }
   def parameterName(name: String): String =
     (name.head + "[A-Z\\d]".r.replaceAllIn(name.tail, { m =>
@@ -74,10 +75,10 @@ object Writer {
         asIcal(valueParameters(property.value)) +
         ":" + valueAsIcal(property.value)) + CRLF
 
-  def asIcal(event: Event): String = {
-    "BEGIN:VEVENT" + CRLF +
-      event.properties.map(asIcal).mkString("") +
-      event.alarms.map(_ => ???).mkString("") +
-      "END:VEVENT" + CRLF
+  def asIcal(vobject: VObject): String = {
+    "BEGIN:" + vobject.name + CRLF +
+      vobject.properties().map(asIcal).mkString +
+      vobject.components().map(asIcal).mkString +
+      "END:" + vobject.name + CRLF
   }
 }

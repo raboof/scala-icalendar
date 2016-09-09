@@ -1,6 +1,6 @@
 package icalendar
 
-import java.time.{ ZonedDateTime, ZoneOffset }
+import java.time.{ZonedDateTime, ZoneOffset}
 
 import scala.language.implicitConversions
 
@@ -12,6 +12,14 @@ sealed abstract class Property[T <: ValueType] { self: Product =>
     case p: PropertyParameter[_] => p
   }.toList
   val value: T
+}
+
+object CalendarProperties {
+  import ValueTypes._
+  import PropertyParameters._
+
+  case class Prodid(value: Text) extends Property[Text]
+  case class Version(value: Text) extends Property[Text]
 }
 
 object Properties {
