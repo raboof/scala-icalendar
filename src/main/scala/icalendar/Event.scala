@@ -9,6 +9,7 @@ case class Event(
     classification: Option[Classification] = None,
     description: Option[Description] = None,
     summary: Option[Summary] = None,
+    url: Option[Url] = None,
     categories: List[Categories] = Nil
 ) extends VObject {
   override def properties() =
