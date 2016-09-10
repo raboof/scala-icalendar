@@ -12,8 +12,11 @@ case class Event(
     url: Option[Url] = None,
     categories: List[Categories] = Nil
 ) extends VObject {
-  override def properties() =
-    List(Some(dtstamp.getOrElse(Dtstamp.now())), Some(uid), dtstart, classification, description, summary).flatten ++ categories
+  override def properties() = {
+    val constants = super.properties()
+    if (constants.exists(_.isInstanceOf[Dtstamp])) constants
+    else Dtstamp.now() :: constants
+  }
 
   // TODO support for alarms
   def alarms = List()
