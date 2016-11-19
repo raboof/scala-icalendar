@@ -1,6 +1,6 @@
 package icalendar
 
-import java.net.URI
+import java.net.{ URI, URL }
 import java.time.ZonedDateTime
 import scala.language.implicitConversions
 
@@ -37,6 +37,7 @@ object ValueTypes {
   object Uri {
     implicit def fromString(string: String): Uri = Uri(new URI(string))
     implicit def fromUri(uri: URI): Uri = Uri(uri)
+    implicit def fromUrl(url: URL): Uri = Uri(url.toURI)
   }
 
   case class CalAddress(value: Uri,
