@@ -40,7 +40,8 @@ object Properties {
   /** Date and Time */
   case class Dtstart(value: DateTime) extends Property[DateTime]
   object Dtstart {
-    implicit def optionFromDateTime(dt: ZonedDateTime): Option[Dtstart] = Some(Dtstart(dt))
+    implicit def fromDateTime(dt: ZonedDateTime): Dtstart = Dtstart(dt)
+    // implicit def optionFromDateTime(dt: ZonedDateTime): Option[Dtstart] = Some(Dtstart(dt))
   }
   case class FreeBusy(value: ListType[Period], fbtype: Option[Fbtype] = None) extends Property[ListType[Period]]
 

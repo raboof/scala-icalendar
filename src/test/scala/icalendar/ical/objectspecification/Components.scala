@@ -7,6 +7,7 @@ import java.time.{ZonedDateTime, ZoneOffset}
 import org.scalatest._
 import matchers._
 
+import Implicits._
 import Properties._
 import ValueTypes._
 import Writer._

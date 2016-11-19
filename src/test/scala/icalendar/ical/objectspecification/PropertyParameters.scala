@@ -11,6 +11,7 @@ import ValueTypes._
 import Properties._
 import PropertyParameters._
 import Writer._
+import Implicits._
 
 class PropertyParameters extends WordSpec with Matchers {
   "3.2 Property Parameters" should {
