@@ -1,6 +1,7 @@
 package icalendar
 
 import java.time.{ZonedDateTime, ZoneOffset}
+import java.net.{ URL, URI }
 
 import scala.language.implicitConversions
 
@@ -48,6 +49,10 @@ object Properties {
   case class Attendee(value: CalAddress) extends Property[CalAddress]
   case class Organizer(value: CalAddress) extends Property[CalAddress]
   case class Url(value: Uri) extends Property[Uri]
+  object Url {
+    implicit def optionFromURL(url: URL): Option[Url] = Some(Url(url))
+    implicit def optionFromURI(uri: URI): Option[Url] = Some(Url(uri))
+  }
   case class Uid(value: Text) extends Property[Text]
 
   /** Change Management */
