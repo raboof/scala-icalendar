@@ -1,6 +1,8 @@
 scalacOptions := Seq("-feature", "-deprecation")
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.1"
+
+organization := "net.bzzt"
 
 scalafmtConfig in ThisBuild := Some(file(".scalafmt"))
 
