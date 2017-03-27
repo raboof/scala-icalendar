@@ -1,6 +1,7 @@
 package icalendar
 package ical
 
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 /**
@@ -22,7 +23,10 @@ object Writer {
         case '\n' => "\\n"
         case other => other.toString
       }
-    case date: DateTime => date.dt.format(DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"))
+    case date: DateTime => {
+      val utc = date.dt.withZoneSameInstant(ZoneOffset.UTC)
+      utc.format(DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"))
+    }
     case value: CalAddress => valueAsIcal(value.value)
     case Uri(uri) => uri.toString
     case EitherType(Left(payload)) => valueAsIcal(payload)

@@ -27,7 +27,6 @@ object ValueTypes {
 
   case class DateTime(dt: ZonedDateTime) extends ValueType
   object DateTime {
-    // TODO require or convert to UTC here?
     implicit def fromZonedDateTime(dt: ZonedDateTime): DateTime = DateTime(dt)
   }
 
