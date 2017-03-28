@@ -5,8 +5,8 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 /**
-  * Writing icalendar objects to the line-based RFC5545 ICalendar format
-  */
+ * Writing icalendar objects to the line-based RFC5545 ICalendar format
+ */
 object Writer {
   import ValueTypes._
   import PropertyParameters._
@@ -77,7 +77,8 @@ object Writer {
       property.name.toUpperCase +
         asIcal(property.parameters) +
         asIcal(valueParameters(property.value)) +
-        ":" + valueAsIcal(property.value)) + CRLF
+        ":" + valueAsIcal(property.value)
+    ) + CRLF
 
   def asIcal(vobject: VObject): String = {
     "BEGIN:" + vobject.name + CRLF +

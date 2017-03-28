@@ -1,6 +1,6 @@
 package icalendar
 
-import java.time.{ZonedDateTime, ZoneOffset}
+import java.time.{ ZonedDateTime, ZoneOffset }
 import java.net.{ URL, URI }
 
 import scala.language.implicitConversions

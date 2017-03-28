@@ -12,7 +12,8 @@ class CalendarProperties extends WordSpec with Matchers {
   "3.7 Calendar Properties" should {
     "3.7.3 Product Identifier" in {
       asIcal(
-        Prodid("-//ABC Corporation//NONSGML My Product//EN")) should
+        Prodid("-//ABC Corporation//NONSGML My Product//EN")
+      ) should
         haveLines("""PRODID:-//ABC Corporation//NONSGML My Product//EN""")
     }
   }
