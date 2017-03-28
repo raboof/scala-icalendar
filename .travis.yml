@@ -4,5 +4,8 @@ scala: 2.12.1
 
 jdk: oraclejdk8
 
-after_success:
-  - "[[ $TRAVIS_BRANCH == \"master\" ]] && sbt publishSigned"
+# after_success or after_script don't fail the build...
+# https://github.com/travis-ci/travis-ci/issues/758
+
+script:
+  - sbt test && [[ $TRAVIS_TEST_RESULT != "0" ]] || [[ $TRAVIS_BRANCH != "master" ]] || sbt publishSigned
