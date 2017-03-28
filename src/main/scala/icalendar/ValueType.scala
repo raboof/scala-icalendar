@@ -39,13 +39,15 @@ object ValueTypes {
     implicit def fromUrl(url: URL): Uri = Uri(url.toURI)
   }
 
-  case class CalAddress(value: Uri,
-                        cn: Option[Cn] = None,
-                        cutype: Option[Cutype] = None,
-                        delegatedFrom: Option[DelegatedFrom] = None,
-                        delegatedTo: Option[DelegatedTo] = None,
-                        dir: Option[Dir] = None,
-                        member: Option[Member] = None)
+  case class CalAddress(
+    value: Uri,
+    cn: Option[Cn] = None,
+    cutype: Option[Cutype] = None,
+    delegatedFrom: Option[DelegatedFrom] = None,
+    delegatedTo: Option[DelegatedTo] = None,
+    dir: Option[Dir] = None,
+    member: Option[Member] = None
+  )
       extends ValueType
       with Parameterized
 

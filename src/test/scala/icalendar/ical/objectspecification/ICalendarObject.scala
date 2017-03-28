@@ -2,7 +2,7 @@ package icalendar
 package ical
 package objectspecification
 
-import java.time.{ZonedDateTime, ZoneOffset}
+import java.time.{ ZonedDateTime, ZoneOffset }
 
 import org.scalatest._
 import matchers._
@@ -25,7 +25,8 @@ class ICalendarObject extends WordSpec with Matchers {
             // TODO DTEND
             summary = Summary("Bastille Day Party")
           ))
-        )) should
+        )
+      ) should
         haveLines(
           "BEGIN:VCALENDAR",
           "PRODID:-//hacksw/handcal//NONSGML v1.0//EN",

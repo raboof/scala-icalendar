@@ -2,7 +2,7 @@ package icalendar
 package ical
 package objectspecification
 
-import java.time.{ZonedDateTime, ZoneOffset}
+import java.time.{ ZonedDateTime, ZoneOffset }
 
 import org.scalatest._
 import matchers._
@@ -22,7 +22,8 @@ class Components extends WordSpec with Matchers {
           classification = Classification(Private),
           summary = Summary("Annual Employee Review"),
           categories = List(Categories(ListType("BUSINESS", "HUMAN RESOURCES")))
-        )) should
+        )
+      ) should
         haveLines(
           "BEGIN:VEVENT",
           "DTSTAMP:19970901T130000Z",
