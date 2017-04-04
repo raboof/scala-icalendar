@@ -2,7 +2,7 @@ package icalendar
 package ical
 package objectspecification
 
-import java.time.{ ZonedDateTime, ZoneOffset }
+import java.time.{ LocalDate, ZonedDateTime, ZoneOffset }
 
 import org.scalatest._
 import matchers._
@@ -148,6 +148,13 @@ class PropertyParameters extends WordSpec with Matchers {
           """ATTENDEE;MEMBER="mailto:projectA@example.com","mailto:projectB@example.com"""",
           """ :mailto:janedoe@example.com"""
         )
+    }
+
+    "3.2.20 Value Data Types" in {
+      asIcal(
+        Dtend(Date(LocalDate.parse("1998-07-04")))
+      ) should
+        haveLines("DTEND;VALUE=DATE:19980704")
     }
   }
 }

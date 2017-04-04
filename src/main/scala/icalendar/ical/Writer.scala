@@ -14,6 +14,11 @@ object Writer {
   val DQUOTE = "\""
   val CRLF = "\r\n"
 
+  def additionalParameters(value: ValueType): List[PropertyParameter[_]] = value match {
+    case EitherType(Right(payload)) => List(Value(payload.getClass.getSimpleName.toUpperCase))
+    case _ => Nil
+  }
+
   def valueAsIcal(value: ValueType): String = value match {
     case t: Text =>
       t.text.flatMap {
@@ -23,6 +28,9 @@ object Writer {
         case '\n' => "\\n"
         case other => other.toString
       }
+    case date: Date => {
+      date.d.format(DateTimeFormatter.ofPattern("yyyyMMdd"))
+    }
     case date: DateTime => {
       val utc = date.dt.withZoneSameInstant(ZoneOffset.UTC)
       utc.format(DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"))
@@ -76,6 +84,7 @@ object Writer {
     fold(
       property.name.toUpperCase +
         asIcal(property.parameters) +
+        asIcal(additionalParameters(property.value)) +
         asIcal(valueParameters(property.value)) +
         ":" + valueAsIcal(property.value)
     ) + CRLF

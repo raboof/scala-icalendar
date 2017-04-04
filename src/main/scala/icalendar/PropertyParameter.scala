@@ -80,4 +80,6 @@ object PropertyParameters {
   }
 
   case class Member(value: List[CalAddress]) extends PropertyParameter[List[CalAddress]]
+
+  case class Value(value: String) extends PropertyParameter[String]
 }

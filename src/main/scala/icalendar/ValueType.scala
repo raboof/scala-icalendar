@@ -1,7 +1,7 @@
 package icalendar
 
 import java.net.{ URI, URL }
-import java.time.ZonedDateTime
+import java.time.{ LocalDate, ZonedDateTime }
 import scala.language.implicitConversions
 
 sealed trait ValueType
@@ -11,6 +11,10 @@ object ValueTypes {
 
   // TODO add 'parameterized' to add the parameter when not using 'Left'
   case class EitherType[T <: ValueType, U <: ValueType](value: Either[T, U]) extends ValueType
+  object EitherType {
+    implicit def liftLeft[T <: ValueType, U <: ValueType](left: T): EitherType[T, U] = EitherType(Left(left))
+    implicit def liftRight[T <: ValueType, U <: ValueType](right: U): EitherType[T, U] = EitherType(Right(right))
+  }
   case class ListType[T <: ValueType](values: T*) extends ValueType
 
   trait ConstantText {
@@ -24,6 +28,8 @@ object ValueTypes {
       override val text = string
     }
   }
+
+  case class Date(d: LocalDate) extends ValueType
 
   case class DateTime(dt: ZonedDateTime) extends ValueType
   object DateTime {
