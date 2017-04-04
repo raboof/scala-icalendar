@@ -39,10 +39,11 @@ object Properties {
   case class Summary(value: Text, language: Option[Language] = None) extends Property[Text]
 
   /** Date and Time */
-  case class Dtstart(value: DateTime) extends Property[DateTime]
+  case class Dtstart(value: EitherType[DateTime, Date]) extends Property[EitherType[DateTime, Date]]
   object Dtstart {
-    implicit def optionFromDateTime(dt: ZonedDateTime): Option[Dtstart] = Some(Dtstart(dt))
+    implicit def optionFromDateTime(dt: ZonedDateTime): Option[Dtstart] = Some(Dtstart(EitherType(Left(dt))))
   }
+  case class Dtend(value: EitherType[DateTime, Date]) extends Property[EitherType[DateTime, Date]]
   case class FreeBusy(value: ListType[Period], fbtype: Option[Fbtype] = None) extends Property[ListType[Period]]
 
   /** Relationship */
