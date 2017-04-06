@@ -1,6 +1,6 @@
 package icalendar
 
-import java.time.{ ZonedDateTime, ZoneOffset }
+import java.time.{ LocalDate, ZonedDateTime, ZoneOffset }
 import java.net.{ URL, URI }
 
 import scala.language.implicitConversions
@@ -42,6 +42,7 @@ object Properties {
   case class Dtstart(value: EitherType[DateTime, Date]) extends Property[EitherType[DateTime, Date]]
   object Dtstart {
     implicit def optionFromDateTime(dt: ZonedDateTime): Option[Dtstart] = Some(Dtstart(EitherType(Left(dt))))
+    implicit def optionFromLocalDate(ld: LocalDate): Option[Dtstart] = Some(Dtstart(EitherType(Right(ld))))
   }
   case class Dtend(value: EitherType[DateTime, Date]) extends Property[EitherType[DateTime, Date]]
   case class FreeBusy(value: ListType[Period], fbtype: Option[Fbtype] = None) extends Property[ListType[Period]]

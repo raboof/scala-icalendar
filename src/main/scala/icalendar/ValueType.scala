@@ -30,6 +30,9 @@ object ValueTypes {
   }
 
   case class Date(d: LocalDate) extends ValueType
+  object Date {
+    implicit def fromLocalDate(ld: LocalDate): Date = Date(ld)
+  }
 
   case class DateTime(dt: ZonedDateTime) extends ValueType
   object DateTime {
