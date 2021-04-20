@@ -21,11 +21,9 @@ class PropertyValueDataTypes extends WordSpec with Matchers {
     "3.3.5 Date-Time" should {
       "with time provided as UTC+3.00" in {
         asIcal(
-          Dtstart(DateTime(ZonedDateTime.of(1997, 9, 3, 19, 30, 0, 0, ZoneId.of("Europe/Sofia"))))
-        ) should haveLines(
+          Dtstart(DateTime(ZonedDateTime.of(1997, 9, 3, 19, 30, 0, 0, ZoneId.of("Europe/Sofia"))))) should haveLines(
             // expect time back as UTC
-            "DTSTART:19970903T163000Z"
-          )
+            "DTSTART:19970903T163000Z")
       }
     }
   }

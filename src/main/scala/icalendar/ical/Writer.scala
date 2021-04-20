@@ -86,8 +86,7 @@ object Writer {
         asIcal(property.parameters) +
         asIcal(additionalParameters(property.value)) +
         asIcal(valueParameters(property.value)) +
-        ":" + valueAsIcal(property.value)
-    ) + CRLF
+        ":" + valueAsIcal(property.value)) + CRLF
 
   def asIcal(vobject: VObject): String = {
     "BEGIN:" + vobject.name + CRLF +
