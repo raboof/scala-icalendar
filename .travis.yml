@@ -1,9 +1,5 @@
 language: scala
 
-scala: 2.12.1
-
-jdk: oraclejdk8
-
 # after_success or after_script don't fail the build...
 # https://github.com/travis-ci/travis-ci/issues/758
 
