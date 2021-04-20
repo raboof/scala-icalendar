@@ -55,10 +55,9 @@ object ValueTypes {
     delegatedFrom: Option[DelegatedFrom] = None,
     delegatedTo: Option[DelegatedTo] = None,
     dir: Option[Dir] = None,
-    member: Option[Member] = None
-  )
-      extends ValueType
-      with Parameterized
+    member: Option[Member] = None)
+    extends ValueType
+    with Parameterized
 
   case class Period(from: DateTime, to: DateTime) extends ValueType
   sealed trait ClassificationValue extends Text

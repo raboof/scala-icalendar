@@ -23,10 +23,7 @@ class ICalendarObject extends WordSpec with Matchers {
             dtstamp = ZonedDateTime.of(1997, 6, 10, 17, 23, 45, 0, ZoneOffset.UTC),
             dtstart = ZonedDateTime.of(1997, 7, 14, 17, 0, 0, 0, ZoneOffset.UTC),
             // TODO DTEND
-            summary = Summary("Bastille Day Party")
-          ))
-        )
-      ) should
+            summary = Summary("Bastille Day Party"))))) should
         haveLines(
           "BEGIN:VCALENDAR",
           "PRODID:-//hacksw/handcal//NONSGML v1.0//EN",
@@ -39,8 +36,7 @@ class ICalendarObject extends WordSpec with Matchers {
           // "DTEND:19970715T040000Z",
           "SUMMARY:Bastille Day Party",
           "END:VEVENT",
-          "END:VCALENDAR"
-        )
+          "END:VCALENDAR")
     }
   }
 }
