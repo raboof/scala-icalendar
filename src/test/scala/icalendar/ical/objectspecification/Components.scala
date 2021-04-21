@@ -4,14 +4,14 @@ package objectspecification
 
 import java.time.{ ZonedDateTime, ZoneOffset }
 
-import org.scalatest._
-import matchers._
+import org.scalatest.wordspec._
+import org.scalatest.matchers.should._
 
 import Properties._
 import ValueTypes._
 import Writer._
 
-class Components extends WordSpec with Matchers {
+class Components extends AnyWordSpec with Matchers {
   "3.6 Calendar Components" should {
     "3.6.1 Event" in {
       asIcal(

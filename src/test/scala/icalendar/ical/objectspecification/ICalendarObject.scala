@@ -4,15 +4,15 @@ package objectspecification
 
 import java.time.{ ZonedDateTime, ZoneOffset }
 
-import org.scalatest._
-import matchers._
+import org.scalatest.wordspec._
+import org.scalatest.matchers.should._
 
 import CalendarProperties._
 import Properties._
 import ValueTypes._
 import Writer._
 
-class ICalendarObject extends WordSpec with Matchers {
+class ICalendarObject extends AnyWordSpec with Matchers {
   "3.4 iCalendar Object" should {
     "Simple example" in {
       asIcal(

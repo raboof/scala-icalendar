@@ -4,14 +4,14 @@ package objectspecification
 
 import java.time.{ LocalDate, ZonedDateTime, ZoneOffset }
 
-import org.scalatest._
-import matchers._
+import org.scalatest.wordspec._
+import org.scalatest.matchers.should._
 
 import ValueTypes._
 import Properties._
 import Writer._
 
-class DateAndTimeComponentProperties extends WordSpec with Matchers {
+class DateAndTimeComponentProperties extends AnyWordSpec with Matchers {
   "3.8.2 Date and Time Component Properties" should {
     "3.8.2.2 Date-Time End" in {
       asIcal(

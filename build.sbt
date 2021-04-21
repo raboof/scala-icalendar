@@ -4,7 +4,7 @@ scalaVersion := "2.12.1"
 
 organization := "net.bzzt"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.8" % "test"
 
 credentials += Credentials("Sonatype Nexus Repository Manager",
         "oss.sonatype.org",

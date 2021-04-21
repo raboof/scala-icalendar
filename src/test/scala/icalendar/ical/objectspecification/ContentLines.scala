@@ -2,13 +2,13 @@ package icalendar
 package ical
 package objectspecification
 
-import org.scalatest._
-import matchers._
+import org.scalatest.wordspec._
+import org.scalatest.matchers.should._
 
 import Properties._
 import Writer._
 
-class ContentLines extends WordSpec with Matchers {
+class ContentLines extends AnyWordSpec with Matchers {
   "3.1 Content Lines" should {
     "format a long description" in {
       asIcal(Description(
