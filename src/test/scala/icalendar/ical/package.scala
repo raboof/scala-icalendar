@@ -1,6 +1,6 @@
 /**
- * The scala-icalendar unit tests follow the structure of RFC5545
- */
+  * The scala-icalendar unit tests follow the structure of RFC5545
+  */
 package icalendar
 
 import scala.language.implicitConversions
@@ -11,5 +11,6 @@ import org.scalatest.matchers.should._
 package object ical {
   implicit def liftOption[T](value: T): Option[T] = Some(value)
 
-  def haveLines(lines: String*) = Matchers.equal(lines.mkString("\r\n") + "\r\n")
+  def haveLines(lines: String*) =
+    Matchers.equal(lines.mkString("\r\n") + "\r\n")
 }
