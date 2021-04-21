@@ -38,9 +38,7 @@ object PropertyParameters:
 
   case class Cutype(value: CutypeValue) extends PropertyParameter[CutypeValue]
   object Cutype:
-    implicit def fromValue(value: CutypeValue): Cutype = Cutype(value)
-    implicit def optionFromValue(value: CutypeValue): Option[Cutype] =
-      Some(Cutype(value))
+    given Conversion[CutypeValue, Cutype] = Cutype(_)
   sealed trait CutypeValue extends PropertyParameterValueType
   case object Individual extends CutypeValue with Constant
   case object Group extends CutypeValue with Constant
@@ -61,9 +59,7 @@ object PropertyParameters:
   case class Dir(value: Uri) extends PropertyParameter[Uri]
   case class Fbtype(value: FbtypeValue) extends PropertyParameter[FbtypeValue]
   object Fbtype:
-    implicit def fromValue(value: FbtypeValue): Fbtype = Fbtype(value)
-    implicit def optionFromValue(value: FbtypeValue): Option[Fbtype] =
-      Some(Fbtype(value))
+    given Conversion[FbtypeValue, Fbtype] = Fbtype(_)
   sealed trait FbtypeValue extends PropertyParameterValueType
   case object Free extends FbtypeValue with Constant
   case object Busy extends FbtypeValue with Constant

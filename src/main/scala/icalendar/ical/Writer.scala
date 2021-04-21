@@ -24,10 +24,10 @@ object Writer:
     value match
       case t: Text =>
         t.text.flatMap {
-          case '\\'  => "\\\\"
-          case ';'   => "\\;"
-          case ','   => "\\,"
-          case '\n'  => "\\n"
+          case '\\' => "\\\\"
+          case ';' => "\\;"
+          case ',' => "\\,"
+          case '\n' => "\\n"
           case other => other.toString
         }
       case date: Date =>
