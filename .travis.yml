@@ -14,7 +14,7 @@ install:
     sudo ln -s $HOME/sbt/bin/sbt /usr/local/bin/sbt
 
 script:
-- sbt test && ([[ $TRAVIS_BRANCH != "master" ]] || sbt publishSigned)
+- sbt test
 
 env:
   global:
