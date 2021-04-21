@@ -2,7 +2,7 @@ package icalendar
 package ical
 package objectspecification
 
-import java.time.{ ZonedDateTime, ZoneOffset }
+import java.time.{ZonedDateTime, ZoneOffset}
 
 import org.scalatest.wordspec._
 import org.scalatest.matchers.should._
@@ -21,7 +21,9 @@ class Components extends AnyWordSpec with Matchers {
           dtstart = ZonedDateTime.of(1997, 9, 3, 16, 30, 0, 0, ZoneOffset.UTC),
           classification = Classification(Private),
           summary = Summary("Annual Employee Review"),
-          categories = List(Categories(ListType("BUSINESS", "HUMAN RESOURCES"))))) should
+          categories = List(Categories(ListType("BUSINESS", "HUMAN RESOURCES")))
+        )
+      ) should
         haveLines(
           "BEGIN:VEVENT",
           "DTSTAMP:19970901T130000Z",
@@ -32,7 +34,8 @@ class Components extends AnyWordSpec with Matchers {
           "CLASS:PRIVATE",
           "SUMMARY:Annual Employee Review",
           "CATEGORIES:BUSINESS,HUMAN RESOURCES",
-          "END:VEVENT")
+          "END:VEVENT"
+        )
     }
   }
 }
