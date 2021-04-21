@@ -23,13 +23,11 @@ case class Event(
     // dtend/duration
     // ...
     categories: List[Categories] = Nil
-) extends VObject {
-  override def properties() = {
+) extends VObject:
+  override def properties() =
     val constants = super.properties()
     if (constants.exists(_.isInstanceOf[Dtstamp])) constants
     else Dtstamp.now() :: constants
-  }
 
   // TODO support for alarms
   def alarms = List()
-}
