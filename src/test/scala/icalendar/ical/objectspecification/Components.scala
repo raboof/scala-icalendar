@@ -21,7 +21,7 @@ class Components extends AnyWordSpec with Matchers {
           uid = Uid("19970901T130000Z-123401@example.com"),
           dtstart = ZonedDateTime.of(1997, 9, 3, 16, 30, 0, 0, ZoneOffset.UTC),
           classification = Classification(Private),
-          summary = Summary("Annual Employee Review"),
+          summary = "Annual Employee Review",
           categories = List(Categories(ListType("BUSINESS", "HUMAN RESOURCES")))
         )
       ) should
