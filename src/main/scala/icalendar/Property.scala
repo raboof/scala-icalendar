@@ -40,6 +40,9 @@ object Properties:
       extends Property[Text]
   case class Summary(value: Text, language: Option[Language] = None)
       extends Property[Text]
+  object Summary {
+    given Conversion[String, Summary] = Summary(_)
+  }
 
   /** Date and Time */
   case class Dtstart(value: EitherType[DateTime, Date])
