@@ -63,7 +63,7 @@ object Writer {
       }.mkString(",")
   }
   def parameterName(name: String): String =
-    (name.head + "[A-Z\\d]".r.replaceAllIn(name.tail, { m =>
+    (name.head.toString ++ "[A-Z\\d]".r.replaceAllIn(name.tail, { m =>
       "-" + m.group(0)
     })).toUpperCase
 

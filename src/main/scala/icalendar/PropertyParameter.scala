@@ -8,7 +8,7 @@ sealed abstract class PropertyParameter[T] {
 }
 
 trait Parameterized { self: Product =>
-  def parameters =
+  def parameters: List[PropertyParameter[_]] =
     self.productIterator.collect {
       case Some(p: PropertyParameter[_]) => p
       case p: PropertyParameter[_] => p

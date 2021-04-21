@@ -12,7 +12,7 @@ import Properties._
 import PropertyParameters._
 import Writer._
 
-class PropertyParameters extends AnyWordSpec with Matchers {
+class PropertyParametersSpec extends AnyWordSpec with Matchers {
   "3.2 Property Parameters" should {
     "3.2.1 Alternate Text Representation" in {
       asIcal(

@@ -3,7 +3,7 @@ package icalendar
 abstract class VObject { self: Product =>
   lazy val name = "V" + nameFromClassName(this).toUpperCase
 
-  def properties() =
+  def properties(): List[Property[_]] =
     self.productIterator.collect {
       case Some(p: Property[_]) => List(p)
       case p: Property[_] => List(p)
