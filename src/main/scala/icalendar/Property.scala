@@ -7,13 +7,13 @@ import scala.language.implicitConversions
 
 sealed abstract class Property[T <: ValueType]:
   self: Product =>
-    lazy val name = nameFromClassName(this)
+  lazy val name = nameFromClassName(this)
 
-    val parameters = self.productIterator.collect {
-      case Some(p: PropertyParameter[_]) => p
-      case p: PropertyParameter[_] => p
-    }.toList
-    val value: T
+  val parameters = self.productIterator.collect {
+    case Some(p: PropertyParameter[_]) => p
+    case p: PropertyParameter[_]       => p
+  }.toList
+  val value: T
 
 object CalendarProperties:
   import ValueTypes._
@@ -45,7 +45,8 @@ object Properties:
   case class Dtstart(value: EitherType[DateTime, Date])
       extends Property[EitherType[DateTime, Date]]
   object Dtstart:
-    given Conversion[ZonedDateTime, Dtstart] = zdt => Dtstart(EitherType(Left(zdt)))
+    given Conversion[ZonedDateTime, Dtstart] = zdt =>
+      Dtstart(EitherType(Left(zdt)))
     given Conversion[LocalDate, Dtstart] = ld => Dtstart(EitherType(Right(ld)))
   case class Dtend(value: EitherType[DateTime, Date])
       extends Property[EitherType[DateTime, Date]]
@@ -66,4 +67,3 @@ object Properties:
   object Dtstamp:
     def now(): Dtstamp = Dtstamp(ZonedDateTime.now(ZoneOffset.UTC))
     given Conversion[ZonedDateTime, Dtstamp] = Dtstamp(_)
-

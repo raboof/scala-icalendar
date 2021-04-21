@@ -62,4 +62,7 @@ object ValueTypes:
 
   case class Period(from: DateTime, to: DateTime) extends ValueType
   sealed trait ClassificationValue extends Text
-  case object Private extends ClassificationValue with ConstantText
+  case object Private
+      extends ClassificationValue
+      with
+        ConstantText
