@@ -4,13 +4,14 @@ package objectspecification
 
 import java.time.{ LocalDate, ZonedDateTime, ZoneId }
 
-import org.scalatest._
+import org.scalatest.wordspec._
+import org.scalatest.matchers.should._
 
 import ValueTypes._
 import Properties._
 import Writer._
 
-class PropertyValueDataTypes extends WordSpec with Matchers {
+class PropertyValueDataTypes extends AnyWordSpec with Matchers {
   "3.3 Property Value Data Types" should {
     "3.3.4 Date" should {
       "correctly format July 14, 1997" in {

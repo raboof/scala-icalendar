@@ -27,7 +27,7 @@ trait IanaTokenValue {
 }
 
 abstract class PropertyParameterValueType {
-  val asString: String
+  def asString: String
 }
 trait Constant {
   val asString = nameFromClassName(this).toUpperCase
