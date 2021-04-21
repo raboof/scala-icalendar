@@ -8,7 +8,7 @@ import org.scalatest.matchers.should._
 import CalendarProperties._
 import Writer._
 
-class CalendarProperties extends AnyWordSpec with Matchers {
+class CalendarPropertiesSpec extends AnyWordSpec with Matchers {
   "3.7 Calendar Properties" should {
     "3.7.3 Product Identifier" in {
       asIcal(
