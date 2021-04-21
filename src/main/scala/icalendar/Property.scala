@@ -45,10 +45,8 @@ object Properties:
   case class Dtstart(value: EitherType[DateTime, Date])
       extends Property[EitherType[DateTime, Date]]
   object Dtstart:
-    implicit def optionFromDateTime(dt: ZonedDateTime): Option[Dtstart] =
-      Some(Dtstart(EitherType(Left(dt))))
-    implicit def optionFromLocalDate(ld: LocalDate): Option[Dtstart] =
-      Some(Dtstart(EitherType(Right(ld))))
+    given Conversion[ZonedDateTime, Dtstart] = zdt => Dtstart(EitherType(Left(zdt)))
+    given Conversion[LocalDate, Dtstart] = ld => Dtstart(EitherType(Right(ld)))
   case class Dtend(value: EitherType[DateTime, Date])
       extends Property[EitherType[DateTime, Date]]
   case class FreeBusy(value: ListType[Period], fbtype: Option[Fbtype] = None)
@@ -59,13 +57,13 @@ object Properties:
   case class Organizer(value: CalAddress) extends Property[CalAddress]
   case class Url(value: Uri) extends Property[Uri]
   object Url:
-    implicit def optionFromURL(url: URL): Option[Url] = Some(Url(url))
-    implicit def optionFromURI(uri: URI): Option[Url] = Some(Url(uri))
+    given Conversion[URL, Url] = Url(_)
+    given Conversion[URI, Url] = Url(_)
   case class Uid(value: Text) extends Property[Text]
 
   /** Change Management */
   case class Dtstamp(value: DateTime) extends Property[DateTime]
   object Dtstamp:
     def now(): Dtstamp = Dtstamp(ZonedDateTime.now(ZoneOffset.UTC))
-    implicit def optionFromDateTime(dt: ZonedDateTime): Option[Dtstamp] =
-      Some(Dtstamp(dt))
+    given Conversion[ZonedDateTime, Dtstamp] = Dtstamp(_)
+

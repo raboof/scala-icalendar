@@ -10,6 +10,7 @@ import org.scalatest.matchers.should._
 import Properties._
 import ValueTypes._
 import Writer._
+import scala.language.implicitConversions
 
 class Components extends AnyWordSpec with Matchers {
   "3.6 Calendar Components" should {
