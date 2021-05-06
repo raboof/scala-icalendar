@@ -4,8 +4,7 @@ package ical
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-/**
-  * Writing icalendar objects to the line-based RFC5545 ICalendar format
+/** Writing icalendar objects to the line-based RFC5545 ICalendar format
   */
 object Writer:
   import ValueTypes._
@@ -24,10 +23,10 @@ object Writer:
     value match
       case t: Text =>
         t.text.flatMap {
-          case '\\' => "\\\\"
-          case ';' => "\\;"
-          case ',' => "\\,"
-          case '\n' => "\\n"
+          case '\\'  => "\\\\"
+          case ';'   => "\\;"
+          case ','   => "\\,"
+          case '\n'  => "\\n"
           case other => other.toString
         }
       case date: Date =>

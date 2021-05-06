@@ -8,11 +8,11 @@ sealed abstract class PropertyParameter[T]:
 
 trait Parameterized:
   self: Product =>
-    def parameters: List[PropertyParameter[_]] =
-      self.productIterator.collect {
-        case Some(p: PropertyParameter[_]) => p
-        case p: PropertyParameter[_] => p
-      }.toList
+  def parameters: List[PropertyParameter[_]] =
+    self.productIterator.collect {
+      case Some(p: PropertyParameter[_]) => p
+      case p: PropertyParameter[_]       => p
+    }.toList
 
 case class Xname(value: String, vendorId: Option[String] = None)
 trait XnameValue:
@@ -78,7 +78,8 @@ object PropertyParameters:
     def apply(tag1: String, tag2: String): Language =
       Language(LanguageTag(List(tag1, tag2)))
   // RFC5646
-  case class LanguageTag(subtags: List[String]) extends PropertyParameterValueType:
+  case class LanguageTag(subtags: List[String])
+      extends PropertyParameterValueType:
     lazy val asString = subtags.mkString("-")
 
   case class Member(value: List[CalAddress])
