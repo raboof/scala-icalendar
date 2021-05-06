@@ -21,7 +21,6 @@ object CalendarProperties:
 
   case class Prodid(value: Text) extends Property[Text]
   case class Version(value: Text) extends Property[Text]
-
 /** Component properties */
 object Properties:
   import ValueTypes._
@@ -41,7 +40,7 @@ object Properties:
   case class Summary(value: Text, language: Option[Language] = None)
       extends Property[Text]
 
-  /** Date and Time */
+      /** Date and Time */
   case class Dtstart(value: EitherType[DateTime, Date])
       extends Property[EitherType[DateTime, Date]]
   object Dtstart:
@@ -53,16 +52,17 @@ object Properties:
   case class FreeBusy(value: ListType[Period], fbtype: Option[Fbtype] = None)
       extends Property[ListType[Period]]
 
-  /** Relationship */
+      /** Relationship */
   case class Attendee(value: CalAddress) extends Property[CalAddress]
   case class Organizer(value: CalAddress) extends Property[CalAddress]
   case class Url(value: Uri) extends Property[Uri]
   object Url:
     given Conversion[URL, Url] = Url(_)
     given Conversion[URI, Url] = Url(_)
-  case class Uid(value: Text) extends Property[Text]
+  case class Uid(value: Text)
+      extends Property[Text]
 
-  /** Change Management */
+      /** Change Management */
   case class Dtstamp(value: DateTime) extends Property[DateTime]
   object Dtstamp:
     def now(): Dtstamp = Dtstamp(ZonedDateTime.now(ZoneOffset.UTC))
